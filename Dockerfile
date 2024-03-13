@@ -24,4 +24,4 @@ RUN pip install --no-deps . && \
     pip cache purge && \
     conda clean --all -y && \
     echo "conda activate openfe_env" >> ~/.bashrc
-
+ENV PATH /opt/Miniforge3/envs/openfe_env/bin:$PATH
