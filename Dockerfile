@@ -19,8 +19,7 @@ RUN mamba env create -f environment.yml -y && \
     conda init
 SHELL ["conda", "run", "-n", "openfe_env", "/bin/bash", "-c"]
 
-RUN python -m pip install --no-deps . && \
-    activate openfe_env && \
+RUN pip install --no-deps . && \
     conda clean --all -y && \
     pip cache purge && \
     conda clean --all -y && \
