@@ -2,6 +2,7 @@ FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y \
     wget \
     git \
+    vim \
     sudo \
     build-essential
 WORKDIR /opt
@@ -15,13 +16,13 @@ ENV PATH /opt/Miniforge3/bin:$PATH
 WORKDIR /opt/openfe
 
 RUN mamba env create -f environment.yml -y && \
-    conda init && \
-    activate openfe_env && \
-    python -m pip install --no-deps . && \
+    conda init
+SHELL ["conda", "run", "-n", "openfe_env", "/bin/bash", "-c"]
+
+RUN python -m pip install --no-deps . && \
     activate openfe_env && \
     conda clean --all -y && \
     pip cache purge && \
     conda clean --all -y && \
     echo "conda activate openfe_env" >> ~/.bashrc
 
-SHELL ["conda", "run", "-n", "openfe_env", "/bin/bash", "-c"]
