@@ -20,6 +20,7 @@ RUN mamba env create -f environment.yml -y && \
 SHELL ["conda", "run", "-n", "openfe_env", "/bin/bash", "-c"]
 
 RUN pip install --no-deps . && \
+    mamba install -c conda-forge ambertools && \
     conda clean --all -y && \
     pip cache purge && \
     conda clean --all -y && \
