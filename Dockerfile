@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu22.04
+FROM nvidia/cuda:12.2.2-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y \
     wget \
     git \
